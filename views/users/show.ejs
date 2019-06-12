@@ -1,0 +1,45 @@
+<% include ../partials/header %>
+
+<div class="container">
+  <div class="row">
+    <!--<div class="col-md-1"></div>-->
+    <div class="col-md-12">
+      <div class="thumbnail">
+        <img src="<%= hotel.image %>" alt=<%= hotel.name %> width:"100%">
+        <div class="caption-full">
+          <h4><a><%= hotel.name %></a></h4>
+          <p><%= hotel.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+      <div class="text-center"><h1>Dishes Available</h1></div>
+    
+      <hr>
+        
+      <% hotel.dishes.forEach(dish => { %>
+      <div class="row">
+        <div class="col-md-3">
+          <img src="<%= dish.image %>" alt=<%= dish.name %> width=100 height=100>
+        </div>
+        <div class="col-md-9">
+          <h3><%= dish.name %></h3>
+          <p><strong>Price: </strong>&#8377;<%= dish.price %></p>
+          <form action="/user/hotels/<%= dish._id %>" method="POST">
+            <label>Quantity: 
+                <input type="text" name="quantity" placeholder="Enter the quantity" min="1" value="1" required>
+            </label>
+            <input type="submit" class="btn btn-primary btn-xs" value="Add to Cart">
+          </form>
+        </div>
+      </div>
+      <hr>
+      <% }) %>
+    
+      <div class="text-right"><a href="/user/hotels">Back</a></div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>

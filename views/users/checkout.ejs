@@ -1,0 +1,49 @@
+<% include ../partials/header %>
+
+<div class="container">
+  <h1>Your Orders</h1>
+  
+  <hr>
+  <% let count = 0 %>
+  <% orders.forEach(order => { %>
+  
+  <% count++; %>
+  <div class="row">
+    <div class="col-md-3">
+      <img src="<%= order.image %>" alt=<%= order.name %> width=50 height=50>
+    </div>
+    <div class="col-md-9">
+      <h3><%= order.name %></h3>
+      <p><strong>price:</strong> Rs.<%= order.price %></p>
+      <p><strong>Quantity:</strong> <%= order.quantity %> Nos.</p>
+      <form action="/user/dishes/<%= order._id %>/edit" method="POST">
+          <input type="text" name="new_quantity" placeholder="New Quantity" value=<%= order.quantity %> required>
+          <input type="submit" class="btn btn-warning" value="Edit Order">
+      </form>
+      <form action="/user/dishes/<%= order._id %>/delete" method="POST">
+          <input type="submit" class="btn btn-danger" value="Delete Order">
+      </form>
+    </div>
+  </div>
+  
+  <hr>
+
+  <% }); %>
+
+  
+    <div class="row">
+    <% if (count > 0) { %>
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+          <h1>Total Price: &#8377; <%= price %></h1>
+      </div>
+    </div>
+    <a href='mailto:rahulpadmaraju16@gmail.com?subject="order placed successfully&body="Your order had been successfully placed"'><button style="margin: 0 auto" class="btn btn-primary">Place Order</button></a>
+    <% } else { %>
+    <h3 class="text-center"> ---- No Orders found to display ---- </h3>
+    <% } %>
+    <a href="/user/">Back</a>
+</div>
+
+
+<% include ../partials/footer %>

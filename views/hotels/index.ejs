@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+
+
+<div class="container">
+  <header class="jumbotron">
+    <div class="container">
+      <h1>Welcome to Zomato!</h1>
+      <p>
+        <a class="btn btn-success" href="/hotels/new">Add a new Hotel</a>
+      </p>
+    </div>
+  </header>
+
+  <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+    <% hotels.forEach(hotel => { %>
+        <div class="col-md-3 col-sm-6">
+          <div class="thumbnail">
+            <img src="<%= hotel.image %>" alt=<%= hotel.name %>>
+            <div class="caption">
+              <h4><%= hotel.name %></h4>
+            </div>
+            <p>
+                <a href="/hotels/<%= hotel._id %>" class="btn btn-primary">See More</a>
+            </p>
+          </div>
+        </div>
+    <% }); %>
+  </div>
+
+
+  <a href="/">Home</a>
+
+</div>
+
+
+<% include ../partials/footer %>
+
+
